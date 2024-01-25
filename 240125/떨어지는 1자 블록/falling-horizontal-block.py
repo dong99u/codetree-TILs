@@ -18,6 +18,8 @@ def get_target_row() -> int:
     for row in range(n - 1):
         if not all_blank(row + 1, k, k + m - 1):
             return row
+
+    return n - 1
         
 target_now = get_target_row()
 
