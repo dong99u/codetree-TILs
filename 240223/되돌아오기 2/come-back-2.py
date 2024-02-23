@@ -27,4 +27,7 @@ for instruction in instructions:
     if is_home(x, y):
         break
 
-print(counter)
+if is_home(x, y):
+    print(counter)
+else: 
+    print(-1)
