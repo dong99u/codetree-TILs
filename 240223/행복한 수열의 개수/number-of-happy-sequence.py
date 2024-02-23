@@ -31,16 +31,16 @@ def happy_col():
 # m개 이상 연속하면 return True
 def sequence_check(sequence: list) -> bool:
     count = 1
+    max_count = 1
     for i in range(1, len(sequence)):
         if sequence[i - 1] == sequence[i]:
             count += 1
         else:
             count = 1
         
-    if count >= m:
-        return True
-    else:
-        return False
+        max_count = max(count, max_count)
+    
+    return max_count >= m
 
 happy_row()
 happy_col()
