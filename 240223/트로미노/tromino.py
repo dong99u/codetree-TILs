@@ -57,7 +57,7 @@ for row in range(n):
     for col in range(m):
 
         # 2 x 2사각형 범위 안
-        if row + 1 <= 2 and col + 1 <= 2:
+        if row + 1 < n and col + 1 < m:
             # 그 2x2 사각형 안에서 최대 크기를 구함
             max_sum_in_square = get_sum_each_shape(row, col, row + 1, col + 1)
             answer = max(answer, max_sum_in_square)
