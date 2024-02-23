@@ -33,4 +33,7 @@ for _ in range(N):
     if is_home(x, y):
         break
 
-print(counter)
+if x == 0 and y == 0:
+    print(counter)
+else:
+    print(-1)
