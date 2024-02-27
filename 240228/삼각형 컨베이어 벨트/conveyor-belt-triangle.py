@@ -11,5 +11,5 @@ for _ in range(t):
     sum_list.insert(0, temp)
     
 print(*sum_list[:n])
-print(*sum_list[n:n+3])
-print(*sum_list[n+3:])
+print(*sum_list[n:2*n])
+print(*sum_list[2*n:])
