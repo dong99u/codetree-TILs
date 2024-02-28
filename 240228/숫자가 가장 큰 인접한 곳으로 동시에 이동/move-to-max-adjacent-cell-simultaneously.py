@@ -5,7 +5,7 @@ def in_range(x, y):
     
 def move(x, y):
     curr_num = grid[x][y]
-    max_num, max_x, max_y = curr_num, -1, -1
+    max_num, max_x, max_y = 0, -1, -1
 
     for dx, dy in zip(dxs, dys):
         nx = x + dx
