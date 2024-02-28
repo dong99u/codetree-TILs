@@ -22,7 +22,7 @@ def land(row):
     for col in range(k, k + m):
         grid[row][col] = 1
 
-for row in range(1, n):
+for row in range(n):
 
     if not can_land(row):
         land(row - 1)
