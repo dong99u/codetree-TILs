@@ -13,9 +13,11 @@ def lcm(a, b):
     return a * b / gcd(a, b)
 
 
-def f(n):
+def f(n):        
     if n == 1:
         return lcm(l[0], l[1])
+    if n == 0:
+        return l[0]
 
     return lcm(f(n - 1), l[n])
 
