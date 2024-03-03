@@ -14,7 +14,7 @@ def check_T(words: list, T: str) -> list:
     result = []
 
     for word in words:
-        if T in word:
+        if word.startswith(T):
             result.append(word)
 
     result.sort()
