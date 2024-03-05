@@ -1,19 +1,20 @@
 import sys
 input = sys.stdin.readline
 
+class Number:
+    def __init__(self, number, index):
+        self.number, self.index = number, index
+
 n = int(input())
-
-sequence = [
-    [num, idx + 1] for idx, num in enumerate(list(map(int, input().split())))
+numbers = [
+    Number(num, idx)
+    for idx, num in enumerate(list(map(int, input().split())))
 ]
+answer = [0] * n
 
+numbers.sort(key=lambda x: (x.number, x.index))
 
-sequence.sort(key=lambda x: x[0])
+for idx, number in enumerate(numbers):
+    answer[number.index] = idx + 1
 
-for idx, seq in enumerate(sequence):
-    seq.append(idx + 1)
-
-sequence.sort(key=lambda x: x[1])
-
-for seq in sequence:
-    print(seq[2], end = " ")
+print(*answer)
