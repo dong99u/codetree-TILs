@@ -5,7 +5,7 @@ points = [
 ]
 
 
-points.sort(key=lambda x: abs(x[0] + x[1]))
+points.sort(key=lambda x: abs(x[0]) + abs(x[1]))
 
 for point in points:
     print(point[-1])
