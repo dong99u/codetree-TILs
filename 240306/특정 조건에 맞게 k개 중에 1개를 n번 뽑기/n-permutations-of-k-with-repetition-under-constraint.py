@@ -10,7 +10,7 @@ def choose(curr_num):
 
     # 진행 조건
     for num in range(1, k + 1):
-        if len(answer) > 2 and answer[-1] == num and answer[-2] == num:
+        if len(answer) >= 2 and answer[-1] == num and answer[-2] == num:
             continue
 
         answer.append(num)
