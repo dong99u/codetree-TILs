@@ -6,4 +6,7 @@ minutes = c - 11
 
 answer = 24 * days * 60 + 60 * hours + minutes
 
-print(answer)
+if answer < 0:
+    print(-1)
+else:
+    print(answer)
