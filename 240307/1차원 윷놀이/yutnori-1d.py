@@ -36,7 +36,7 @@ def calculate_point():
         distances[horse_number - 1] += turns[idx]
 
     for distance in distances:
-        if distance >= m:
+        if distance >= m - 1:
             point += 1
 
     answer = max(point, answer)
