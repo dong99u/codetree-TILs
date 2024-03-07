@@ -31,9 +31,9 @@ def calculate_point():
     point = 0
 
     distances = [0] * k
-    for horse_number in selected_horse_numbers:
+    for idx, horse_number in enumerate(selected_horse_numbers):
 
-        distances[horse_number - 1] += turns[horse_number]
+        distances[horse_number - 1] += turns[idx]
 
     for distance in distances:
         if distance >= m:
