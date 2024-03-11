@@ -2,7 +2,7 @@ OFFSET = 100
 
 n = int(input())
 
-arr = [0] * (200 - 1)
+arr = [0] * (200)
 for _ in range(n):
     x1, x2 = tuple(map(int, input().split()))
     x1, x2 = x1 + OFFSET, x2 + OFFSET
