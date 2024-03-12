@@ -11,11 +11,11 @@ answer = 0
 
 for i in range(n):
 
-    if i >= 1 and t <= sequence[i] and sequence[i - 1] < sequence[i]:
+    if i == 0 and t < sequence[i]:
         cnt += 1
 
-    elif i == 0 and t <= sequence[i]:
-        cnt = 1
+    elif i >= 1 and t < sequence[i]:
+        cnt += 1
 
     else:
         cnt = 0
