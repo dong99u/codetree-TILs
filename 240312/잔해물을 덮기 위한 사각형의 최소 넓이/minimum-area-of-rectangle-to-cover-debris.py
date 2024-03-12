@@ -28,7 +28,11 @@ for x in range(MAX_XY):
             max_x = max(max_x, x)
             max_y = max(max_y, y)
 
-width = max_y - min_y + 1
-height = max_x - min_x + 1
+if max_x == -1:
+    print(0)
+else:
 
-print(width * height)
+    width = max_y - min_y + 1
+    height = max_x - min_x + 1
+
+    print(width * height)
