@@ -1,13 +1,21 @@
 n = int(input())
 
 sequence = []
-cnt = 0
+cnt = 1
+max_cnt = 0
 
 for _ in range(n):
     sequence.append(int(input()))
 
-for i in range(n):
-    if i == 0 or sequence[i] != sequence[i - 1]:
+for i in range(1, n):
+    
+    if sequence[i] != sequence[i - 1]:
+        max_cnt = max(max_cnt, cnt)
+        cnt = 1
+
+    else:
         cnt += 1
 
-print(cnt)
+max_cnt = max(max_cnt, cnt)
+
+print(max_cnt)
