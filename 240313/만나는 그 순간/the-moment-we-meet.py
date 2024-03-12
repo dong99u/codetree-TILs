@@ -1,47 +1,28 @@
+MAX_T = 1000000
+
 n, m = tuple(map(int, input().split()))
 
-A = [0]
-B = [0]
+A = [0] * (MAX_T + 1)
+B = [0] * (MAX_T + 1)
 
-curr_x = 0
+time_a = 1
 for _ in range(n):
-    d, t = input().split()
-    t = int(t)
-
-    if d == 'L':
-
-        for _ in range(t):
-            curr_x -= 1
-            A.append(curr_x)
+    d, t = tuple(input().split())
+    for _ in range(int(t)):
+        A[time_a] = A[time_a - 1] + (1 if d == 'R' else -1)
+        time_a += 1
     
-    if d == 'R':
-
-        for _ in range(t):
-            curr_x += 1
-            A.append(curr_x)
-curr_x = 0
+time_b = 1
 for _ in range(m):
-    d, t = input().split()
-    t = int(t)
+    d, t = tuple(input().split())
+    for _ in range(int(t)):
+        B[time_b] = B[time_b - 1] + (1 if d == 'R' else -1)
+        time_b += 1
 
-    if d == 'L':
-
-        for _ in range(t):
-            curr_x -= 1
-            B.append(curr_x)
-
-    if d == 'R':
-
-        for _ in range(t):
-            curr_x += 1
-            B.append(curr_x)
-is_meet = False
-for i in range(1, len(A)):
-
+answer = -1
+for i in range(1, time_a):
     if A[i] == B[i]:
-        print(i)
-        is_meet = True
+        answer = i
         break
 
-if not is_meet:
-    print(-1)
+print(answer)
