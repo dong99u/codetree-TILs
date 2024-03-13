@@ -28,10 +28,10 @@ for _ in range(m):
         curr_time_b += 1
 
 if curr_time_a < curr_time_b:
-    for i in range(curr_time_a + 1, curr_time_b + 1):
+    for i in range(curr_time_a, curr_time_b + 1):
         A[i] = A[i - 1]
 else:
-    for i in range(curr_time_b + 1, curr_time_a + 1):
+    for i in range(curr_time_b, curr_time_a + 1):
         B[i] = B[i - 1]
 
 answer = 0
