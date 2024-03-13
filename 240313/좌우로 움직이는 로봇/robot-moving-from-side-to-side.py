@@ -6,8 +6,8 @@ n, m = tuple(map(int, input().split()))
 
 MAX_TIME = 1000000
 
-A = [0] * MAX_TIME
-B = [0] * MAX_TIME
+A = [0] * (MAX_TIME + 1)
+B = [0] * (MAX_TIME + 1)
 
 curr_time_a = 1
 for _ in range(n):
