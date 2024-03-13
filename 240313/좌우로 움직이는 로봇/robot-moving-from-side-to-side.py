@@ -28,15 +28,15 @@ for _ in range(m):
         curr_time_b += 1
 
 if curr_time_a < curr_time_b:
-    for i in range(curr_time_a, curr_time_b + 1):
+    for i in range(curr_time_a, curr_time_b):
         A[i] = A[i - 1]
 else:
-    for i in range(curr_time_b, curr_time_a + 1):
+    for i in range(curr_time_b, curr_time_a):
         B[i] = B[i - 1]
 
 answer = 0
 exit_time = max(curr_time_a, curr_time_b)
-for time in range(1, exit_time + 1):
+for time in range(1, exit_time):
 
     if A[time] == B[time] and (A[time - 1] != B[time - 1]):
         answer += 1
