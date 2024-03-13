@@ -1,10 +1,6 @@
 import sys
 input = sys.stdin.readline
 
-class Shake:
-    def __init__(self, time, person1, person2):
-        self.time, self.person1, self.person2 = time, person1, person2
-
 n, k, p, t = tuple(map(int, input().split()))
 
 MAX_TIME = 250
@@ -13,31 +9,40 @@ shakes = []
 
 for _ in range(t):
     time, x, y = tuple(map(int, input().split()))
-    shakes.append(Shake(time, x, y))
+    shakes.append((time, x, y))
 
-shakes.sort(key = lambda x: x.time)
+shakes.sort(key=lambda shake: shake[0])
 
-shake_num = [0] * (n + 1)
-infected = [False] * (n + 1)
-
-infected[p] = True
+infections = [None] * (n + 1)
+infections[p] = k
 
 for shake in shakes:
-    x = shake.person1
-    y = shake.person2
+    time, x, y = shake
 
-    if infected[x] == True:
-        shake_num[x] += 1
-    if infected[y] == True:
-        shake_num[y] += 1
+    # x와 y 개발자 둘다 감염되지 않았을 경우
+    if infections[x] == None and infections[y] == None:
+        continue
 
-    if shake_num[x] <= k and infected[x]:
-        infected[y] = True
-    if shake_num[y]<= k and infected[y]:
-        infected[x] = True
+    # x개발자가 감염되고, y 개발자가 감염되지 않았을 경우
+    elif infections[x] != None and infections[y] == None:
+        if infections[x] > 0:
+            infections[x] -= 1
+            infections[y] = k
+
+    # x 개발자가 감염되지 않았고, y 개발자가 감염됐을 경우
+    elif infections[x] == None and infections[y] != None:
+        if infections[y] > 0:
+            infections[x] = k
+            infections[y] -= 1
+
+    # 둘다 감염됐을 경우
+    else:
+        infections[x] -= 1
+        infections[y] -= 1
+
 
 for i in range(1, n + 1):
-    if infected[i]:
-        print(1, end="")
+    if infections[i] != None:
+        print(1, end='')
     else:
-        print(0, end="")
+        print(0, end='')
