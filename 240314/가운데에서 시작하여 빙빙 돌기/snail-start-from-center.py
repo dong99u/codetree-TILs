@@ -1,33 +1,42 @@
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
 
+
 def already_filled(x, y):
     return grid[x][y]
 
 
+def end(x, y):
+    return not in_range(x, y)
+
+
+def move(dir_num):
+    global x, y
+
+    dx, dy = [0, -1, 0, 1], [1, 0, -1, 0]
+
+    x += dx[dir_num]
+    y += dy[dir_num]
+
+
 n = int(input())
+grid = [[0] * n for _ in range(n)]
 
-# 시작 위치
-x, y = n - 1, n - 1
-dir_num = 0
+x = y = n // 2
+dir_num, distance = 0, 1
+num = 1
 
-grid = [
-    [0] * n
-    for _ in range(n)
-]
+while not end(x, y):
+    for _ in range(distance):
+        grid[x][y] = num
+        num += 1
 
-dx, dy = [0, -1, 0, 1], [-1, 0, 1, 0]
+        move(dir_num)
 
-for num in range(n * n, 0, -1):
-    grid[x][y] = num
+    dir_num = (dir_num + 1) % 4
 
-    nx, ny = x + dx[dir_num], y + dy[dir_num]
-
-    if not in_range(nx, ny) or already_filled(nx, ny):
-        dir_num = (dir_num + 1) % 4
-        nx, ny = x + dx[dir_num], y + dy[dir_num]
-
-    x, y = nx, ny
+    if dir_num == 0 or dir_num == 2:
+        distance += 1
 
 for row in grid:
     print(*row)
