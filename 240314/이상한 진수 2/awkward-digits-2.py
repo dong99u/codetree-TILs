@@ -15,7 +15,7 @@ def bin_to_dec(code: str):
 
 
 binary = list(input())
-answer = bin_to_dec("".join(binary))
+answer = -1
 
 for i in range(len(binary)):
 
