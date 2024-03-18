@@ -1,6 +1,3 @@
-import sys
-INT_MIN = -sys.maxsize
-
 n = int(input())
 
 arr = [
@@ -34,7 +31,7 @@ def align_number(num1, num2, num3):
 
     return num1, num2, num3
 
-answer = INT_MIN
+answer = -1
 for i in range(n):
     for j in range(i + 1, n):
         for k in range(j + 1, n):
@@ -49,7 +46,4 @@ for i in range(n):
                 val = arr[i] + arr[j] + arr[k]
                 answer = max(answer, val)
 
-
-            
-            
 print(answer)
