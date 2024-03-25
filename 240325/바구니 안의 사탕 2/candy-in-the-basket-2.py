@@ -11,7 +11,7 @@ answer = 0
 for i in range(MAX):
 
     sum_all = 0
-    for j in range(i - k, i + 1 + 1):
+    for j in range(i - k, i + k + 1):
         if j >= 0 and j <= MAX:
             sum_all += arr[j]
 
