@@ -4,7 +4,7 @@ arr = [0] * MAX
 
 for _ in range(n):
     candy, pos = map(int, input().split())
-    arr[pos] = candy
+    arr[pos] += candy
 
 
 answer = 0
