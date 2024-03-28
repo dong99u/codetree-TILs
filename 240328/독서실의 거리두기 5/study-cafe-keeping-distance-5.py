@@ -1,29 +1,30 @@
 n = int(input())
+seat = list(input())
 
-arr = input()
 
-answer = 0
+def min_dist():
+    dist = n
+    # 둘 다 1인 곳에 대해
+    # 모든 쌍을 조사하여, 그 중 가장 가까운 거리를 구합니다.
+    for i in range(n):
+        for j in range(i + 1, n):
+            if seat[i] == '1' and seat[j] == '1':
+                dist = min(dist, j - i)
+    
+    return dist
 
-for seat_num in range(n):
 
-    if arr[seat_num] == "1":
-        continue
+ans = 0
+# 들어갈 위치를 일일이 정해보며
+# 그 상황에서 가장 가까운 사람간의 거리를 구해
+# 가능한 경우 중 최댓값을 계산합니다.
+for i in range(n):
+    if seat[i] == '0':
+        # 비어있는 위치에 인원을 배치합니다.
+        seat[i] = '1'
+        # 가장 가까운 사람간의 거리를 구해 최댓값을 갱신해줍니다.
+        ans = max(ans, min_dist())
+        # 다시 채워졌던 값을 되돌려줍니다.
+        seat[i] = '0'
 
-    if arr[seat_num] == "0":
-        d1 = d2 = float('inf')
-
-        for i in range(seat_num - 1, -1, -1):
-            if arr[i] == "1":
-                d1 = seat_num - i
-                break
-
-        for i in range(seat_num + 1, n):
-            if arr[i] == "1":
-                d2 = i - seat_num
-                break
-
-        min_dist = min(d1, d2)
-
-        answer = max(answer, min_dist)
-
-print(answer)
+print(ans)
