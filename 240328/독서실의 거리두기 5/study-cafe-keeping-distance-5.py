@@ -10,7 +10,7 @@ for seat_num in range(n):
         continue
 
     if arr[seat_num] == "0":
-        d1, d2 = 0, 0
+        d1 = d2 = float('inf')
 
         for i in range(seat_num - 1, -1, -1):
             if arr[i] == "1":
