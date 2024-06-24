@@ -34,11 +34,10 @@ public class Main {
                 } else {
                     cnt = 1;
                 }
-
-                if (cnt >= m) {
-                    result++;
-                    break;
-                }
+            }
+            if (cnt >= m) {
+                result++;
+                break;
             }
         }
     
@@ -52,10 +51,11 @@ public class Main {
                     cnt = 1;
                 }
 
-                if (cnt >= m) {
-                    result++;
-                    break;
-                }
+                
+            }
+            if (cnt >= m) {
+                result++;
+                break;
             }
         }
 
