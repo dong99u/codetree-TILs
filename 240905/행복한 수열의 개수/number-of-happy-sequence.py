@@ -17,8 +17,9 @@ for row in range(n):
             continuous_row_count = 1
         prev = grid[row][col]
 
-    if continuous_row_count >= m:
-        answer += 1
+        if continuous_row_count >= m:
+            answer += 1
+            break
 
 for col in range(n):
     prev = grid[0][col]
@@ -30,7 +31,8 @@ for col in range(n):
             continuous_col_count = 1
         prev = grid[row][col]
 
-    if continuous_col_count >= m:
-        answer += 1
+        if continuous_col_count >= m:
+            answer += 1
+            break
 
 print(answer)
