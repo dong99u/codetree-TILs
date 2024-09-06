@@ -15,7 +15,9 @@ def get_cost(x, y, size):
     cost = (size * size + (size + 1) * (size + 1))
 
     if size == 0:
-        return grid[x][y] - cost
+        result_cost = grid[x][y] * m - cost
+        return grid[x][y] if result_cost >= 0 else 0
+
 
     # 사각형 코인 더하기
     for i in range(x - size + 1, x + size):
@@ -39,7 +41,7 @@ def get_cost(x, y, size):
 
     result_cost = coin_price_sum - cost
 
-    return coin_count_sum if result_cost > 0 else 0
+    return coin_count_sum if result_cost >= 0 else 0
 
 
 
