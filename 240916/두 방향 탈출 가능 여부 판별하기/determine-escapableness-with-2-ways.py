@@ -35,8 +35,8 @@ answer = 0
 def dfs(x, y):
     global answer
     if x == n - 1 and y == m - 1:
-        print('1')
-        exit()
+        answer = 1
+        return
 
 
     for dx, dy in zip(dxs, dys):
@@ -46,7 +46,7 @@ def dfs(x, y):
         if can_go(nx, ny):
             visited[nx][ny] = True
             dfs(nx, ny)
-            visited[nx][ny] = False
+
 
 visited[0][0] = True
 
