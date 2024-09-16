@@ -35,8 +35,9 @@ answer = 0
 def dfs(x, y):
     global answer
     if x == n - 1 and y == m - 1:
-        answer = 1
-        return
+        print('1')
+        exit()
+
 
     for dx, dy in zip(dxs, dys):
         nx = x + dx
