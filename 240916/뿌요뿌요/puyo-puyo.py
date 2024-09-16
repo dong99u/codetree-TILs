@@ -49,7 +49,7 @@ for x in range(n):
         count = 0
         if visited[x][y] is False:
             dfs(x, y)
-            if count >= 2:
+            if count >= 4:
                 block_count += 1
             max_count = max(max_count, count)
 
