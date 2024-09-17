@@ -1,5 +1,9 @@
 n = int(input())
 
+if n <= 2:
+    print(1)
+    exit()
+
 dp = [-1] * (n + 1)
 
 dp[1] = 1
