@@ -45,14 +45,12 @@ for _ in range(k):
 while q:
     curr_x, curr_y = q.popleft()
 
-    if visited[curr_x][curr_y] == False:
-        visited[curr_x][curr_y] = True
-        count += 1
-
     for dx, dy in zip(dxs, dys):
         next_x, next_y = curr_x + dx, curr_y + dy
 
         if can_go(next_x, next_y):
             q.append((next_x, next_y))
+            visited[next_x][next_y] = True
+            count += 1
 
 print(count)
