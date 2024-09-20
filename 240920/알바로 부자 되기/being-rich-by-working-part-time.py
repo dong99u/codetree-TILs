@@ -14,7 +14,7 @@ for i in range(n):
 
     dp[i] = max(dp[i], dp[i] + p1)
 
-    for j in range(i, n):
+    for j in range(i + 1, n):
         s2, e2, p2 = arr[j]
 
         if e1 < s2:
