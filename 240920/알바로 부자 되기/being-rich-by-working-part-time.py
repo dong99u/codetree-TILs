@@ -1,23 +1,20 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
 arr = []
-
-dp = [0] * n
 
 for _ in range(n):
     arr.append(tuple(map(int, input().split())))
 
+# Sort the jobs based on end times
+arr.sort(key=lambda x: x[1])
+
+dp = [0] * n
+
 for i in range(n):
-    s1, e1, p1 = arr[i]
-
-    dp[i] = max(dp[i], dp[i] + p1)
-
-    for j in range(i + 1, n):
-        s2, e2, p2 = arr[j]
-
-        if e1 < s2:
-            dp[i] = max(dp[i], dp[i] + p2)
+    s_i, e_i, p_i = arr[i]
+    dp[i] = p_i  # Initialize with the payment of the current job
+    for j in range(i):
+        s_j, e_j, p_j = arr[j]
+        if e_j < s_i:  # Non-overlapping condition
+            dp[i] = max(dp[i], dp[j] + p_i)
 
 print(max(dp))
