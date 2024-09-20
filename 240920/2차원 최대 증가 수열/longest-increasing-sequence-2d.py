@@ -18,7 +18,7 @@ dp = [
 dp[0][0] = 1
 
 for x in range(1, n):
-    for y in range(1, n):
+    for y in range(1, m):
 
         for i in range(x):
             for j in range(y):
