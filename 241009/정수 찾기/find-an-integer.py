@@ -6,6 +6,8 @@ n = int(input().rstrip())
 
 a = list(map(int, input().split()))
 
+a = set(a)
+
 m = int(input().rstrip())
 
 b = list(map(int, input().split()))
