@@ -27,3 +27,4 @@ for _ in range(T):
         print(sl[-1], sl[0])
     else:
         print('EMPTY')
+    sl.clear()
