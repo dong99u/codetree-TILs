@@ -10,10 +10,15 @@ arr = list(map(int, input().split()))
 heap = []
 answer = 0
 heapq.heappush(heap, arr[-1])
+
+sum_val = arr[-1]
+
 for i in range(n - 2, 0, -1):
     heapq.heappush(heap, arr[i])
-    others_without_min_val = heap[1:]
-    avg = round(sum(others_without_min_val) / len(others_without_min_val), 2)
+    sum_val += arr[i]
+
+    min_val = heap[0]
+    avg = round((sum_val - min_val) / (len(heap) - 1), 2)
 
     answer = max(answer, avg)
 
