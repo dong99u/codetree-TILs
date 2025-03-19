@@ -50,7 +50,12 @@ public class Main {
 			}
 		}
 
-		System.out.println(answer);
+		// 조건을 만족하는 경우가 없으면 -1 출력
+		if (answer == Integer.MAX_VALUE) {
+			System.out.println(-1);
+		} else {
+			System.out.println(answer);
+		}
 
 	}
 }
