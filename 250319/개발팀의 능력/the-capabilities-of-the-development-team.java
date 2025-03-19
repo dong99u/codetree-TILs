@@ -41,7 +41,7 @@ public class Main {
 								int maxVal = Arrays.stream(scores).max().getAsInt();
 								int minVal = Arrays.stream(scores).min().getAsInt();
 
-								answer = Math.min(answer, maxVal - minVal);
+								answer = Math.min(answer, Math.abs(maxVal - minVal));
 
 							}
 						}
