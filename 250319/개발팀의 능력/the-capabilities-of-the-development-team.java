@@ -25,7 +25,7 @@ public class Main {
 
 						// 마지막 세 번째 그룹 선택 (1개)
 						for (int m = 0; m < 5; m++) {
-							if (m != i || m != j || m != k || m != l) {
+							if (m != i && m != j && m != k && m != l) {
 
 								int[] scores = new int[3];
 
