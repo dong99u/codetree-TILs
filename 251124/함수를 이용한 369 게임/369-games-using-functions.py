@@ -8,7 +8,7 @@ def check_369(num):
     while num > 0:
         if num % 10 == 3 or num % 10 == 6 or num % 10 == 9:
             return True
-        n //= 10
+        num //= 10
     return False
 
 answer = 0
