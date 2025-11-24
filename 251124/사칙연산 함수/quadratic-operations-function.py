@@ -5,7 +5,7 @@ c = int(c)
 # Please write your code here.
 
 def add(a, c):
-    return a + b
+    return a + c
 
 def minus(a, c):
     return a - c
