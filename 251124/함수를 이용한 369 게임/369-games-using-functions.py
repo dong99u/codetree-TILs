@@ -5,10 +5,10 @@ def check(num):
     return num % 3 == 0 or check_369(num)
 
 def check_369(num):
-    num_str = str(num)
-    for elem in num_str:
-        if elem in '369':
+    while num > 0:
+        if num % 10 == 3 or num % 10 == 6 or n % 10 == 9:
             return True
+        n //= 10
     return False
 
 answer = 0
