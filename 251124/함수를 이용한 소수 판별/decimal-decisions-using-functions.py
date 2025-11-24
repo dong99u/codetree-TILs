@@ -21,6 +21,6 @@ def is_prime(n):
 answer = 0
 for n in range(a, b + 1):
     if is_prime(n):
-        answer += 1
+        answer += n
 
 print(answer)
