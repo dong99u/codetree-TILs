@@ -1,16 +1,19 @@
-from collections import deque
-
 n, t = map(int, input().split())
 u = list(map(int, input().split()))
 d = list(map(int, input().split()))
 
 # Please write your code here.
-q = deque([*u, *d])
 for _ in range(t):
-    q.appendleft(q.pop())
+    u_temp = u[-1]
+    for i in range(n - 1, 0, -1):
+        u[i] = u[i - 1]
+    
+    d_temp = d[-1]
+    for i in range(n - 1, 0, -1):
+        d[i] = d[i - 1]
 
-for _ in range(3):
-    print(q.popleft(), end=' ')
-print()
-for _ in range(3):
-    print(q.popleft(), end=' ')
+    u[0] = d_temp
+    d[0] = u_temp
+
+print(*u)
+print(*d)
