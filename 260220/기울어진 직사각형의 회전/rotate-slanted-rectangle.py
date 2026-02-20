@@ -18,7 +18,7 @@ for i in range(m3):
     q.append(grid[r - m1 - m2 + i][c - 2 + m1 - m2 - i])
 
 for i in range(m4 - 1):
-    q.append(grid[r - m1 - m2 + m3 + i][r + m1 - m2 - m3 + i])
+    q.append(grid[r - m1 - m2 + m3 + i][c + m1 - m2 - m3 + i])
 
 if dir == 0:
     q.rotate(1)
@@ -35,7 +35,7 @@ for i in range(m3):
     grid[r - m1 - m2 + i][c - 2 + m1 - m2 - i] = q.popleft()
 
 for i in range(m4 - 1):
-    grid[r - m1 - m2 + m3 + i][r + m1 - m2 - m3 + i] = q.popleft()
+    grid[r - m1 - m2 + m3 + i][c + m1 - m2 - m3 + i] = q.popleft()
 
 for row in grid:
     print(*row)
