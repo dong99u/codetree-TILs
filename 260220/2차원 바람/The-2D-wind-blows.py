@@ -36,8 +36,8 @@ def copy_to_queue(r1, c1, r2, c2):
 
 
 def copy_to_origin(r1, c1, r2, c2, q):
-    for j in range(c1, c2 + 1):
-        a[r1 - 1][j - 1] = q.popleft()
+    for j in range(c1 - 1, c2):
+        a[r1 - 1][j] = q.popleft()
 
     for i in range(r1, r2):
         a[i][c2 - 1] = q.popleft()
@@ -57,33 +57,33 @@ def rotate(r1, c1, r2, c2):
     copy_to_origin(r1, c1, r2, c2, q)
 
 
-for _ in range(q):
-    for r1, c1, r2, c2 in winds:
-        rotate(r1, c1, r2, c2)
 
-        temp = [
-            [0] * (c2 - c1 + 1)
-            for _ in range(r2 - r1 + 1)
-        ]
+for r1, c1, r2, c2 in winds:
+    rotate(r1, c1, r2, c2)
 
-        for i in range(r1 - 1, r2):
-            for j in range(c1 - 1, c2):
-                sum_val = a[i][j]
-                cnt = 1
-                for di, dj in zip(dxs, dys):
-                    nx, ny = i + di, j + dj
+    temp = [
+        [0] * (c2 - c1 + 1)
+        for _ in range(r2 - r1 + 1)
+    ]
 
-                    if not in_range(nx, ny):
-                        continue
+    for i in range(r1 - 1, r2):
+        for j in range(c1 - 1, c2):
+            sum_val = a[i][j]
+            cnt = 1
+            for di, dj in zip(dxs, dys):
+                nx, ny = i + di, j + dj
 
-                    sum_val += a[nx][ny]
-                    cnt += 1
+                if not in_range(nx, ny):
+                    continue
 
-                temp[i - r1 + 1][j - c1 + 1] = sum_val // cnt
+                sum_val += a[nx][ny]
+                cnt += 1
 
-        for i in range(r1 - 1, r2):
-            for j in range(c1 - 1, c2):
-                a[i][j] = temp[i - r1 + 1][j - c1 + 1]
+            temp[i - r1 + 1][j - c1 + 1] = sum_val // cnt
+
+    for i in range(r1 - 1, r2):
+        for j in range(c1 - 1, c2):
+            a[i][j] = temp[i - r1 + 1][j - c1 + 1]
 
 for row in a:
     print(*row)
