@@ -13,8 +13,10 @@ winds = [tuple(map(int, input().split())) for _ in range(q)]
 dxs = [-1, 1, 0, 0]
 dys = [0, 0, -1, 1]
 
+
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < m
+
 
 def copy_to_queue(r1, c1, r2, c2):
     q = deque()
@@ -27,10 +29,11 @@ def copy_to_queue(r1, c1, r2, c2):
     for j in range(c2 - 2, c1 - 2, -1):
         q.append(a[r2 - 1][j])
 
-    for i in range(r2 - 1, r1 - 1, -1):
+    for i in range(r2 - 2, r1 - 1, -1):
         q.append(a[i][c1 - 1])
 
     return q
+
 
 def copy_to_origin(r1, c1, r2, c2, q):
     for j in range(c1, c2 + 1):
@@ -42,8 +45,9 @@ def copy_to_origin(r1, c1, r2, c2, q):
     for j in range(c2 - 2, c1 - 2, -1):
         a[r2 - 1][j] = q.popleft()
 
-    for i in range(r2, r1 - 1, -1):
+    for i in range(r2 - 2, r1 - 1, -1):
         a[i][c1 - 1] = q.popleft()
+
 
 def rotate(r1, c1, r2, c2):
     q = copy_to_queue(r1, c1, r2, c2)
@@ -71,17 +75,15 @@ for _ in range(q):
 
                     if not in_range(nx, ny):
                         continue
-                    
+
                     sum_val += a[nx][ny]
                     cnt += 1
-
 
                 temp[i - r1 + 1][j - c1 + 1] = sum_val // cnt
 
         for i in range(r1 - 1, r2):
             for j in range(c1 - 1, c2):
                 a[i][j] = temp[i - r1 + 1][j - c1 + 1]
-
 
 for row in a:
     print(*row)
