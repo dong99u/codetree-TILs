@@ -10,7 +10,7 @@ q = deque(A)
 
 answer = 1e9
 
-for _ in range(len(A) - 1):
+for _ in range(len(A)):
     cnt = 1
     result = []
     for i in range(1, len(A)):
