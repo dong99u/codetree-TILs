@@ -4,6 +4,7 @@ grid = [list(map(int, input().split())) for _ in range(4)]
 # Read direction
 dir = input()
 
+
 # Please write your code here.
 
 def check(arr, dir_num):
@@ -15,7 +16,7 @@ def check(arr, dir_num):
     for num in arr:
         if num != 0:
             result.append(num)
-        
+
     if dir_num == 0:
         result += [0] * (4 - len(result))
         for i in range(1, 4):
@@ -25,7 +26,7 @@ def check(arr, dir_num):
             elif result[i - 1] == 0:
                 result[i - 1] = result[i]
                 result[i] = 0
-        
+
         return result
 
     else:
@@ -40,7 +41,7 @@ def check(arr, dir_num):
                 result[i] = 0
 
         return result
-    
+
 
 if dir == 'L' or dir == 'R':
     for row_idx, row in enumerate(grid):
@@ -55,13 +56,13 @@ if dir == 'U' or dir == 'D':
     for col_idx, col in enumerate(zip(*grid)):
         if dir == 'U':
             arr = check(col, 0)
-            for row_idx, num in enumerate(col):
+            for row_idx, num in enumerate(arr):
                 grid[row_idx][col_idx] = num
         else:
             arr = check(col, 1)
             for row_idx, num in enumerate(col):
                 grid[row_idx][col_idx] = num
-                
+
 for row in grid:
     print(*row)
 
