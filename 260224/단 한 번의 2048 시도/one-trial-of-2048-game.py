@@ -60,7 +60,7 @@ if dir == 'U' or dir == 'D':
                 grid[row_idx][col_idx] = num
         else:
             arr = check(col, 1)
-            for row_idx, num in enumerate(col):
+            for row_idx, num in enumerate(arr):
                 grid[row_idx][col_idx] = num
 
 for row in grid:
