@@ -7,7 +7,7 @@ def move():
 
     while True:
         if (r + 1 < n and any(grid[r + 1][k:k + m])) or \
-                r + 1 == n - 1:
+                r == n - 1:
             grid[r][k:k + m] = [1] * m
             break
         r += 1
