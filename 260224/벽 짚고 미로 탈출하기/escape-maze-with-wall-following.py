@@ -16,19 +16,8 @@ dys = [1, 0, -1, 0]
 dir_idx = 0
 time = 0
 
-visited = [
-    [False] * n
-    for _ in range(n)
-]
-
 valid = True
 while in_range(cx, cy):
-    if visited[cx][cy]:
-        valid = False
-        break
-
-    visited[cx][cy] = True
-
     nx, ny = cx + dxs[dir_idx], cy + dys[dir_idx]
 
     if not in_range(nx, ny):
@@ -37,10 +26,7 @@ while in_range(cx, cy):
 
     if grid[nx][ny] == '#':
         dir_idx = (dir_idx + 3) % 4
-        nx, ny = cx + dxs[dir_idx], cy + dys[dir_idx]
-
-        if grid[nx][ny] == '#':
-            valid = False
+        continue
 
     else:
         next_dir_idx = (dir_idx + 1) % 4
@@ -50,4 +36,10 @@ while in_range(cx, cy):
     cx, cy = nx, ny
     time += 1
 
+    if time > n * n:
+        valid = False
+        break
+
 print(time if valid else -1)
+
+
