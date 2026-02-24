@@ -52,9 +52,10 @@ def bomb():
             numbers_2d[i][j] = temp[i]
 
 
-for _ in range(k + 1):
+for _ in range(k):
     bomb()
     rotate()
+    bomb()
 
 answer = 0
 for i in range(n):
