@@ -65,9 +65,11 @@ for _ in range(k):
     drop()
     rotate()
 
-# 터질 게 없을 때까지 반복
+# 터질 게 없을 때까지 반복: 터뜨리기 → 내리기 → 회전 → 내리기
 drop()
 while boom():
+    drop()
+    rotate()
     drop()
 
 # 남은 숫자 개수 세기
