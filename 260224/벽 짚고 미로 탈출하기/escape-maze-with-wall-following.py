@@ -37,7 +37,10 @@ while in_range(cx, cy):
 
     if grid[nx][ny] == '#':
         dir_idx = (dir_idx + 3) % 4
-        nx, ny = cx + dxs[dir_idx], cy + dys[dir_idx],
+        nx, ny = cx + dxs[dir_idx], cy + dys[dir_idx]
+
+        if grid[nx][ny] == '#':
+            valid = False
 
     else:
         next_dir_idx = (dir_idx + 1) % 4
