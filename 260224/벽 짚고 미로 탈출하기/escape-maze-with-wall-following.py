@@ -31,6 +31,10 @@ while in_range(cx, cy):
 
     nx, ny = cx + dxs[dir_idx], cy + dys[dir_idx]
 
+    if not in_range(nx, ny):
+        time += 1
+        break
+
     if grid[nx][ny] == '#':
         dir_idx = (dir_idx + 3) % 4
         nx, ny = cx + dxs[dir_idx], cy + dys[dir_idx],
@@ -39,7 +43,6 @@ while in_range(cx, cy):
         next_dir_idx = (dir_idx + 1) % 4
         if grid[nx + dxs[next_dir_idx]][ny + dys[next_dir_idx]] == '.':
             dir_idx = next_dir_idx
-
 
     cx, cy = nx, ny
     time += 1
