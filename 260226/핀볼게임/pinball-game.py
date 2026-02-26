@@ -40,14 +40,15 @@ def move(i, j, d):
 
     while True:
         ni, nj = i + dxs[d], j + dys[d]
+
+        if grid[i][j] != 0:
+            d = change_direction(i, j, d)
+            ni, nj = i + dxs[d], j + dys[d]
+
         time += 1
 
         if not in_range(ni, nj):
             break
-
-        if grid[ni][nj] != 0:
-            nd = change_direction(ni, nj, d)
-            d = nd
 
         i, j = ni, nj
 
