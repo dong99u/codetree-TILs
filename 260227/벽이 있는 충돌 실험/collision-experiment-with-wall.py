@@ -53,7 +53,7 @@ for _ in range(T):
         yi = int(yi) - 1
         current[xi][yi] = mapper[di]
 
-    for _ in range(2 * (n - 1)):
+    for _ in range(2 * n - 1):
         move()
 
     answer = 0
