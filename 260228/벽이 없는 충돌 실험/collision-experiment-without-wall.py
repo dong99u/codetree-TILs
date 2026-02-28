@@ -42,6 +42,10 @@ for _ in range(t):
     answer = -1
     for time in range(4002):
         new_grid = defaultdict(list)
+        # 구슬이 1개 이하면 종료
+        total_marbles = sum(len(v) for v in grid.values())
+        if total_marbles <= 1:
+            break
         for marbles in grid.values():
             for marble in marbles:
                 marble.move()
