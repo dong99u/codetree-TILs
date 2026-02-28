@@ -18,27 +18,22 @@ dys = [0, -1, 1, 0]
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < n
 
+
 def bounce(pos, v, n, going_positive):
-    """
-    pos: 현재 위치 (0-indexed)
-    v: 이동 거리
-    n: 격자 크기 (0 ~ n-1)
-    going_positive: True면 +방향, False면 -방향
-    반환: (new_pos, new_going_positive)
-    """
     period = 2 * (n - 1)
 
-    # 방향에 따라 절대 좌표계로 변환
-    # 양수 방향이면 pos 그대로, 음수 방향이면 "반사" 좌표 사용
+    # 항상 "앞으로 가는" 선형 좌표로 변환
     if going_positive:
-        effective = (pos + v) % period
+        linear_pos = pos
     else:
-        effective = (pos - v) % period  # Python % 는 항상 양수
+        linear_pos = period - pos  # 반사
 
-    if effective <= n - 1:
-        return effective, True  # 양수 방향
+    new_linear = (linear_pos + v) % period
+
+    if new_linear <= n - 1:
+        return new_linear, True
     else:
-        return period - effective, False  # 음수 방향
+        return period - new_linear, False
 
 class Ball:
     def __init__(self, x=None, y=None, d=None, v=1, ball_num=1):
