@@ -37,7 +37,7 @@ for _ in range(t):
         xi, yi, wi = map(int, (xi, yi, wi))
         di = mapper[di]
         marble = Marble(xi * 2, yi * 2, di, wi, i + 1)
-        grid[(xi, yi)].append(marble)
+        grid[(xi * 2, yi * 2)].append(marble)
 
     answer = -1
     for time in range(4002):
