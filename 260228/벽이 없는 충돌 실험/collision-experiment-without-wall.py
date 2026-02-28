@@ -2,7 +2,7 @@ from collections import defaultdict
 
 t = int(input())
 
-DIST = 0.5
+DIST = 1
 
 class Marble:
     def __init__(self, x, y, d, weight, num):
@@ -36,7 +36,7 @@ for _ in range(t):
         xi, yi, wi, di = input().split()
         xi, yi, wi = map(int, (xi, yi, wi))
         di = mapper[di]
-        marble = Marble(xi, yi, di, wi, i + 1)
+        marble = Marble(xi * 2, yi * 2, di, wi, i + 1)
         grid[(xi, yi)].append(marble)
 
     answer = -1
