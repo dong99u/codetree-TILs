@@ -14,9 +14,8 @@ for _ in range(t):
         xi, yi, wi, di = input().split()
         xi, yi, wi = int(xi), int(yi), int(wi)
         di = mapper[di]
-        marbles.append((xi, yi, di, wi, i+1))
+        marbles.append((xi*2, yi*2, di, wi, i+1))  # ← 2배 스케일
 
-    # 충돌 시간별로 (i번, j번) 쌍 수집
     collisions = defaultdict(list)
 
     for (xi, yi, di, wi, numi), (xj, yj, dj, wj, numj) in combinations(marbles, 2):
@@ -32,8 +31,6 @@ for _ in range(t):
         if ddx == 0:
             if xi != xj:
                 continue
-            if ddy == 0:
-                continue
             ct = (yj - yi) / ddy
         elif ddy == 0:
             if yi != yj:
@@ -46,37 +43,30 @@ for _ in range(t):
                 continue
             ct = tx
 
-        # 양의 정수 시간이어야 유효
         if ct <= 0 or ct != int(ct):
             continue
 
         collisions[int(ct)].append((numi, numj))
 
-    # 구슬 정보 딕셔너리 (num -> (weight, num))
-    alive = {m[4]: m for m in marbles}  # num -> marble tuple
-
+    alive = {m[4]: m for m in marbles}
     answer = -1
 
     for time in sorted(collisions.keys()):
-        # 같은 시간에 발생하는 충돌들을 위치별로 묶기
         pos_group = defaultdict(list)
 
         for numi, numj in collisions[time]:
             if numi not in alive or numj not in alive:
                 continue
             mi = alive[numi]
-            mj = alive[numj]
-            # 충돌 위치 계산
             cx = mi[0] + dxs[mi[2]] * time
             cy = mi[1] + dys[mi[2]] * time
             pos_group[(cx, cy)].extend([numi, numj])
 
         for pos, nums in pos_group.items():
-            nums = list(set(nums))  # 중복 제거
+            nums = list(set(nums))
             if len(nums) < 2:
                 continue
             answer = time
-            # 무게 최대, 같으면 번호 최대인 구슬 생존
             survivors = [alive[num] for num in nums if num in alive]
             best = max(survivors, key=lambda m: (m[3], m[4]))
             for num in nums:
