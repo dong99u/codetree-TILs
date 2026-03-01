@@ -17,7 +17,7 @@ def backtrack(idx, count, length_count):
     if all(i == 0 for i in length_count[l : r + 1]):
         length_count[l : r + 1] = [1] * (r - l + 1)
         result = max(result, backtrack(idx + 1, count + 1, length_count))
-    length_count[l : r + 1] = [0] * (r - l + 1)
+        length_count[l: r + 1] = [0] * (r - l + 1)
     result = max(result, backtrack(idx + 1, count, length_count))
 
     return result
