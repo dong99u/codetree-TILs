@@ -11,7 +11,7 @@ for col, row in edges:
 def simulate(sc, d):
     cr, cc = 1, sc
 
-    while cr <= m:
+    while cr <= 15:
         for col, row in d.get(cr, []):
             if cc == col:
                 cc += 1
