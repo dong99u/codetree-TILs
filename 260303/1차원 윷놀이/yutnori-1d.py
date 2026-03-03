@@ -9,7 +9,7 @@ def backtrack(depth, point, state):
     max_result = 0
     for i in range(k):
         if state[i] == m - 1:
-            backtrack(depth + 1, point, state)
+            max_result = max(max_result, backtrack(depth + 1, point, state))
             continue
 
         prev = state[i]
