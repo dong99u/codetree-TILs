@@ -2,30 +2,32 @@ n, m, k = map(int, input().split()) # 4, 6, 3
 nums = list(map(int, input().split())) # 2, 4, 2, 4
 
 # Please write your code here.
-def backtrack(depth, point, state):
+def backtrack(depth, state):
     if depth == n:
-        return point
+        return 0
 
-    max_result = 0
+    best = 0
+    move = nums[depth]
+
     for i in range(k):
         if state[i] == m - 1:
-            max_result = max(max_result, backtrack(depth + 1, point, state))
+            # 변화 없음, 이번 턴 점수 0
+            best = max(best, backtrack(depth + 1, state))
             continue
 
         prev = state[i]
-        nxt = prev + nums[depth]
+        nxt = prev + move
 
         if nxt >= m - 1:
             state[i] = m - 1
-            max_result = max(max_result, backtrack(depth + 1, point + 1, state))
+            best = max(best, 1 + backtrack(depth + 1, state))
         else:
             state[i] = nxt
-            max_result = max(max_result, backtrack(depth + 1, point, state))
+            best = max(best, backtrack(depth + 1, state))
 
         state[i] = prev
 
-    return max_result
+    return best
 
-answer = backtrack(0, 0, [0] * k)
-
+answer = backtrack(0, [0] * k)
 print(answer)
