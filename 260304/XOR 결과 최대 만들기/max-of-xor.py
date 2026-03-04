@@ -13,7 +13,7 @@ def backtrack(idx, curr, count):
         memo[state] = curr
         return curr
     if idx == n:
-        return count
+        return curr
 
     result = max(backtrack(idx + 1, curr ^ A[idx], count + 1), backtrack(idx + 1, curr, count))
 
