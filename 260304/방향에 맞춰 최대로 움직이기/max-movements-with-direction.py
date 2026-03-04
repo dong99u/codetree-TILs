@@ -14,16 +14,13 @@ def in_range(x, y):
 
 def backtrack(x, y):
     result = 0
-    i = 1
-    while in_range(x, y):
-        d = move_dir[x][y] - 1
-        nx, ny = x + dxs[d] * i, y + dys[d] * i
-        if not in_range(nx, ny):
-            return result
+    d = move_dir[x][y] - 1
+    nx, ny = x + dxs[d], y + dys[d]
+    while in_range(nx, ny):
         if num[nx][ny] > num[x][y]:
             result = max(result, 1 + backtrack(nx, ny))
-        i += 1
-
+        nx += dxs[d]
+        ny += dys[d]
     return result
 
 answer = backtrack(x, y)
