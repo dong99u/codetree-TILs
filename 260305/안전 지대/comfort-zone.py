@@ -24,7 +24,7 @@ for i in range(n):
 
 max_k = 0
 max_count = 0
-for k in range(1, max_height):
+for k in range(1, max_height + 1):
     visited = [[False] * m for _ in range(n)]
     count = 0
     for x in range(n):
