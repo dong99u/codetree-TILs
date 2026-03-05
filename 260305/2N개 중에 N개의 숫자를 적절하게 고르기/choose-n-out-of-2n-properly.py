@@ -13,11 +13,9 @@ def backtrack(idx, count, acc):
 
     another = total_sum - acc
     if 2 * n - idx < n - count:
-        if count != n:
-            memo[state] = INF
-            return INF
-        memo[state] = abs(acc - another)
-        return memo[state]
+        memo[state] = INF
+        return INF
+
     if count == n:
         memo[state] = abs(acc - another)
         return memo[state]
