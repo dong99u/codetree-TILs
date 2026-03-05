@@ -22,8 +22,8 @@ for i in range(n):
     for j in range(m):
         max_height = max(max_height, grid[i][j])
 
-max_k = 0
-max_count = 0
+max_k = -1
+max_count = -1
 for k in range(1, max_height + 1):
     visited = [[False] * m for _ in range(n)]
     count = 0
