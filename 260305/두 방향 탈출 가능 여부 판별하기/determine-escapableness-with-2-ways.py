@@ -27,7 +27,6 @@ def dfs(x, y):
         result = dfs(nx, ny)
         if result:
             return result
-        visited[nx][ny] = False
 
     return result
 
