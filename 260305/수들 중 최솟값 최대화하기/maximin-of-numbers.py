@@ -19,9 +19,7 @@ def backtrack(row, min_val):
         if visited[col]:
             continue
         visited[col] = True
-        if min_val > grid[row][col]:
-            min_val = grid[row][col]
-        result = max(result, backtrack(row + 1, min_val))
+        result = max(result, backtrack(row + 1, min(min_val, grid[row][col])))
         visited[col] = False
 
     return result
