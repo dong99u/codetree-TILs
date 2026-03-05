@@ -1,5 +1,3 @@
-import math
-
 n, m = map(int, input().split())
 points = [tuple(map(int, input().split())) for _ in range(n)]
 
@@ -18,7 +16,7 @@ def get_max_dist():
 
 
 def get_dist(p1, p2):
-    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+    return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
 
 def backtrack(idx, count):
     if count == m:
@@ -33,6 +31,6 @@ def backtrack(idx, count):
 
     return result
 
-answer = int(backtrack(0, 0)) ** 2
+answer = int(backtrack(0, 0))
 
 print(answer)
