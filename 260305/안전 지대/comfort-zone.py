@@ -1,5 +1,4 @@
-import sys
-sys.setrecursionlimit(10 ** 6)
+from collections import deque
 
 n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
@@ -8,14 +7,19 @@ grid = [list(map(int, input().split())) for _ in range(n)]
 dxs = [1, 0, -1, 0]
 dys = [0, 1, 0, -1]
 
-def dfs(x, y):
+def bfs(x, y, visited):
+    q = deque([(x, y)])
     visited[x][y] = True
-    for dx, dy in zip(dxs, dys):
-        nx, ny = x + dx, y + dy
-        if not in_range(nx, ny): continue
-        if visited[nx][ny]: continue
-        if grid[nx][ny] <= k: continue
-        dfs(nx, ny)
+
+    while q:
+        cx, cy = q.popleft()
+        for dx, dy in zip(dxs, dys):
+            nx, ny = cx + dx, cy + dy
+            if not in_range(nx, ny): continue
+            if visited[nx][ny]: continue
+            if grid[nx][ny] <= k: continue
+            visited[nx][ny] = True
+            q.append((nx, ny))
 
 def in_range(x, y):
     return 0 <= x < n and 0 <= y < m
@@ -33,7 +37,7 @@ for k in range(1, max_height + 1):
     for x in range(n):
         for y in range(m):
             if not visited[x][y] and grid[x][y] > k:
-                dfs(x, y)
+                bfs(x, y, visited)
                 count += 1
     if max_count < count:
         max_count = count
