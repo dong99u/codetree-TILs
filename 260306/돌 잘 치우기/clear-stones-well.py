@@ -28,24 +28,13 @@ def backtrack(idx, count):
 
     result = 0
     for i in range(idx, rock_count):
-        selected_rocks.append(i)
+        selected_rocks.add(rock_pos[i])
         result = max(result, backtrack(i + 1, count + 1))
-        selected_rocks.pop()
+        selected_rocks.discard(rock_pos[i])
 
     return result
 
-def remove_rocks():
-    for i in selected_rocks:
-        x, y = rock_pos[i]
-        grid[x][y] = 0
-
-def rollback_rocks():
-    for i in selected_rocks:
-        x, y = rock_pos[i]
-        grid[x][y] = 1
-
 def bfs():
-    remove_rocks()
     visited = [[False] * n for _ in range(n)]
     q = deque(start_pos)
     for x, y in start_pos:
@@ -57,11 +46,11 @@ def bfs():
             nx, ny = cx + dx, cy + dy
             if not in_range(nx, ny): continue
             if visited[nx][ny]: continue
-            if grid[nx][ny] == 1: continue
+            if grid[nx][ny] == 1 and (nx, ny) not in selected_rocks:
+                continue
             q.append((nx, ny))
             visited[nx][ny] = True
             count += 1
-    rollback_rocks()
     return count
 
 rock_pos = []
@@ -71,7 +60,7 @@ for i in range(n):
             rock_pos.append((i, j))
 
 rock_count = len(rock_pos)
-selected_rocks = []
+selected_rocks = set()
 answer = backtrack(0, 0)
 
 print(answer)
