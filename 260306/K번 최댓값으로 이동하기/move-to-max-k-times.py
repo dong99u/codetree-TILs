@@ -19,7 +19,7 @@ def bfs(x, y):
     visited[x][y] = True
     start_num = grid[x][y]
     max_num = 0
-    max_pos = (-1, -1)
+    max_pos = (x, y)
     while q:
         cx, cy = q.popleft()
         for dx, dy in zip(dxs, dys):
