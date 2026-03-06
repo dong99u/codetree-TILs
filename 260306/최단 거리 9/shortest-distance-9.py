@@ -37,12 +37,13 @@ path = [i for i in range(n + 1)]
 dijkstra(A)
 
 print(dist[B])
-paths = []
+paths = [B]
+
 x = B
 while x != A:
-    paths.append(x)
     x = path[x]
+    paths.append(x)
 
-print(paths[::-1])
+print(*paths[::-1])
 
 
