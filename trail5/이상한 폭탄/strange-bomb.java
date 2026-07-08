@@ -9,31 +9,27 @@ public class Main {
         int n = sc.nextInt();
         int k = sc.nextInt();
 
-        HashMap<Integer, TreeSet<Integer>> indexes = new HashMap<>();
+        int[] arr = new int[n];
+        int[] R = new int[n];
+
+        HashMap<Integer, Integer> indexes = new HashMap<>();
 
         for (int i = 0; i < n; i++) {
-            int num = sc.nextInt();
-            if (indexes.containsKey(num)) {
-                indexes.get(num).add(i);
-            } else {
-                TreeSet<Integer> treeSet = new TreeSet<>();
-                treeSet.add(i);
-                indexes.put(num, treeSet);
-            }
+            arr[i] = sc.nextInt();
         }
 
+        for (int i = n - 1; i >= 0; i--) {
+            if (!indexes.containsKey(arr[i])) {
+                R[i] = -1;
+            } else {
+                R[i] = indexes.get(arr[i]);
+            }
+            indexes.put(arr[i], i);
+        }
         int answer = -1;
-        for (Map.Entry<Integer, TreeSet<Integer>> e : indexes.entrySet()) {
-            int[] array = e.getValue().stream().mapToInt(elem -> elem).toArray();
-            if (array.length < 2)
-                continue;
-            else {
-                for (int i = 1; i < array.length; i++) {
-                    if (array[i] - array[i - 1] <= k) {
-                        answer = Math.max(answer, e.getKey());
-                        break;
-                    }
-                }
+        for (int i = 0; i < n; i++) {
+            if (R[i] != -1 && R[i] - i <= k) {
+                answer = Math.max(answer, arr[i]);
             }
         }
         System.out.println(answer);
