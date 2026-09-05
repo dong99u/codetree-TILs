@@ -1,6 +1,5 @@
-import java.io.BufferedReader;
 import java.io.*;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
     static final int DIR_NUM = 8;
@@ -12,12 +11,18 @@ public class Main {
     static int n;
     static int[][] graph; // 숫자값 존재
     static int[][] direction; // 방향값 존재
+    static int[][] memo; // 메모이제이션
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
         graph = new int[n][n]; // 0-indexed
         direction = new int[n][n];
+        memo = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(memo[i], -1);
+        }
 
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
@@ -48,20 +53,23 @@ public class Main {
      * @return 최대 이동 횟수
      */
     // label: 현재 좌표
-    static int backtrack(int x, int y) {
-        int sx = x, sy = y; // 맨 처음 시작 위치
+    static int backtrack(int x, int y) {      // x, y = 이 노드. 절대 안 변함
+        if (memo[x][y] != -1)
+            return memo[x][y];
         int dir = direction[x][y];
         int result = 0;
+        int cx = x, cy = y;                    // 커서는 따로
         while (true) {
-            int nx = x + dx[dir], ny = y + dy[dir];
+            int nx = cx + dx[dir], ny = cy + dy[dir];
             if (!inRange(nx, ny))
                 break;
-            if (graph[nx][ny] > graph[sx][sy]) {
+            if (graph[nx][ny] > graph[x][y]) {
                 result = Math.max(result, 1 + backtrack(nx, ny));
             }
-            x = nx;
-            y = ny;
+            cx = nx;
+            cy = ny;
         }
+        memo[x][y] = result;
         return result;
     }
 
