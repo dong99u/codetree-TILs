@@ -1,31 +1,30 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException { 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
-
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-
-        long sum = arr[N - 1];
-        int min = arr[N - 1];
-
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.offer(arr[n - 1]);
+        int sum = arr[n - 1];
         double answer = 0.0;
-
-        for (int i = N - 2; i >= 1; i--) {
+        for (int i = n - 2; i >= 1; i--) {
+            pq.offer(arr[i]);
             sum += arr[i];
-            min = Math.min(min, arr[i]);
-
-            double avg = (sum - min) / (double)(N - i - 1);
-            answer = Math.max(answer, avg);
+            int minVal = pq.poll();
+            sum -= minVal;
+            answer = Math.max(answer, (double)sum / (n - i - 1));
+            pq.offer(minVal);
+            sum += minVal;
         }
+        System.out.printf("%.2f", answer);
 
-        System.out.printf("%.2f\n", answer);
+
     }
 }
